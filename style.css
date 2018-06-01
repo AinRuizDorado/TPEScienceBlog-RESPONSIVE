@@ -1,0 +1,14 @@
+.card a {
+    /* background-color: red !important; */
+}
+
+* {
+    color: white !important;
+}
+.card {
+    width: 18rem;
+}
+
+.back{
+    background-color: pink;
+}
