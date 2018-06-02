@@ -4,7 +4,6 @@
 
 * {
     color: white !important;
-    background-color: grey;
 }
 .card {
     width: 18rem;
@@ -17,4 +16,11 @@
 .navbar {
     width: 90%;
     margin: 0 auto;
+}
+
+.main {
+    margin: 0 auto;
+    background-color: #141d26;
+    width: 90%;
+    height: 100vh;
 }

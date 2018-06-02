@@ -24,7 +24,6 @@ img {
     top: 0;
     position: sticky;
 }
-
 .nav {
     width: 15%;
     height: 15%;
@@ -52,13 +51,7 @@ img {
     background: #243447;
 }
 
-.main {
-    margin: 0 auto;
-    background-color: #141d26;
-    width: 72%;
-    border-bottom: 3px black solid;
-    
-}
+
 
 .footer{
     width: 100%;
