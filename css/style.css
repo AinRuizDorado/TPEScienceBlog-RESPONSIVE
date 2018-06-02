@@ -4,6 +4,7 @@
 
 * {
     color: white !important;
+    background-color: grey;
 }
 .card {
     width: 18rem;
@@ -11,4 +12,9 @@
 
 .back{
     background-color: pink;
+}
+
+.navbar {
+    width: 90%;
+    margin: 0 auto;
 }
