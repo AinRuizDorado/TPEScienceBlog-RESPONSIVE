@@ -31,5 +31,16 @@ body {
     width: 90%;
     height: 100vh;
 }
-
+/* .carousel {
+    width:800px;
+    height:400px;
+} */
+.main .container-fluid {
+    width: 100%;
+}
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev {
+  display: block;
+}
 
