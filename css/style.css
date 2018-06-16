@@ -43,4 +43,18 @@ body {
 .carousel-item-prev {
   display: block;
 }
+.dropdown-item {
+    color: black !important;
+}
 
+.carousel-caption h5 {
+    font-weight: bold;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    /* esto y el de abajo pone border a la letra asi se ve en fondos que no son del mismo color */
+}
+
+.carousel-caption p {
+    font-weight: bold;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    /* esto y el de abajo pone border a la letra asi se ve en fondos que no son del mismo color */
+}
