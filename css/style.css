@@ -58,3 +58,7 @@ body {
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     /* esto y el de abajo pone border a la letra asi se ve en fondos que no son del mismo color */
 }
+
+.use-ajax{
+    display: none;
+}
