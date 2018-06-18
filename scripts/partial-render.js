@@ -1,10 +1,11 @@
 "use strict";
 let sites = ["pero madre mia willy","html\log.html",];
 
-$('#use-ajax').hide();
 
 function loadClick(event) {
     $('#use-ajax').show();
+    console.log();
+    
     event.preventDefault();
     fetch("html/log.html").then(function (response) {
         console.log("ok");
@@ -15,3 +16,4 @@ function loadClick(event) {
 
 let jsloads = document.querySelectorAll(".js-load");
 jsloads.forEach(e => e.addEventListener("click", loadClick));
+

@@ -29,7 +29,7 @@ body {
     margin: 0 auto;
     background-color: #141d26;
     width: 90%;
-    height: 100vh;
+    /* height: 100vh; */
 }
 /* .carousel {
     width:800px;
