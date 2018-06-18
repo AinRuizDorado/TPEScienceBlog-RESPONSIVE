@@ -5,7 +5,9 @@ body {
     background-color: blue;
     background: fixed;
     background-image: url(https://i.imgur.com/JYcCbZv.png);
-    
+}
+.imblock{
+    display: block;
 }
 .container img {
     width: 100%;
