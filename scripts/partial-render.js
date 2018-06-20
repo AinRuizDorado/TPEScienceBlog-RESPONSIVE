@@ -16,7 +16,7 @@ function loadHome(event) {
     fetch("html/home.html").then(function (response) {
         console.log("ok");
         console.log(response);
-        response.text().then(t => document.querySelector("#use-ajax").innerHTML = t);
+        response.text().then(t => document.querySelector("#render").innerHTML = t);
     });
 }
 function loadHomeFirstTime() {
@@ -24,7 +24,7 @@ function loadHomeFirstTime() {
         fetch("html/home.html").then(function (response) {
             console.log("ok");
             console.log(response);
-            response.text().then(t => document.querySelector("#use-ajax").innerHTML = t);
+            response.text().then(t => document.querySelector("#render").innerHTML = t);
         });
     }, 3000);
     // event.preventDefault();
@@ -39,7 +39,7 @@ function loadUsers(event) {
     fetch("html/falta.html").then(function (response) {
         console.log("ok");
         console.log(response);
-        response.text().then(t => document.querySelector("#use-ajax").innerHTML = t);
+        response.text().then(t => document.querySelector("#render").innerHTML = t);
     });
 }
 
@@ -48,7 +48,7 @@ function loadCategories(event) {
     fetch("html/categories.html").then(function (response) {
         console.log("ok");
         console.log(response);
-        response.text().then(t => document.querySelector("#use-ajax").innerHTML = t);
+        response.text().then(t => document.querySelector("#render").innerHTML = t);
     });
 }
 
@@ -58,7 +58,7 @@ function loadLog(event) {
     fetch("html/log.html").then(function (response) {
         console.log("ok");
         console.log(response);
-        response.text().then(t => document.querySelector("#use-ajax").innerHTML = t);
+        response.text().then(t => document.querySelector("#render").innerHTML = t);
     });
 }
 
