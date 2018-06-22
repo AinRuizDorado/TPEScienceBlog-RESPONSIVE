@@ -14,7 +14,7 @@ jslog.forEach(e => e.addEventListener("click", loadLog));
 function loadHome(event) {
     event.preventDefault();
     fetch("html/home.html").then(function (response) {
-        console.log("ok");
+        console.log("recibi la promesa");
         console.log(response);
         response.text().then(t => document.querySelector("#render").innerHTML = t);
     });
@@ -22,7 +22,7 @@ function loadHome(event) {
 function loadHomeFirstTime() {
     // setTimeout(() => {
         fetch("html/home.html").then(function (response) {
-            console.log("ok");
+            console.log("recibi la promesa");
             console.log(response);
             response.text().then(t => document.querySelector("#render").innerHTML = t);
         });
@@ -36,8 +36,8 @@ if (firstOpen == true) {
 }
 function loadUsers(event) {
     event.preventDefault();
-    fetch("html/falta.html").then(function (response) {
-        console.log("ok");
+    fetch("html/tabla.html").then(function (response) {
+        console.log("recibi la promesa");
         console.log(response);
         response.text().then(t => document.querySelector("#render").innerHTML = t);
     });
@@ -46,7 +46,7 @@ function loadUsers(event) {
 function loadCategories(event) {
     event.preventDefault();
     fetch("html/categories.html").then(function (response) {
-        console.log("ok");
+        console.log("recibi la promesa");
         console.log(response);
         response.text().then(t => document.querySelector("#render").innerHTML = t);
     });
@@ -56,7 +56,7 @@ function loadCategories(event) {
 function loadLog(event) {
     event.preventDefault();
     fetch("html/log.html").then(function (response) {
-        console.log("ok");
+        console.log("recibi la promesa");
         console.log(response);
         response.text().then(t => document.querySelector("#render").innerHTML = t);
     });

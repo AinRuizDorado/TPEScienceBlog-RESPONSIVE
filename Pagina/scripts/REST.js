@@ -44,9 +44,7 @@ function OnPost() {
     }).then(response => {
         if (response.ok) {
             response.json().then(r => {
-                // metodoGet();
                 console.log("Exito");
-
             })
         } else {
             console.log("error object");
