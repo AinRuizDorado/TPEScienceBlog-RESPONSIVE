@@ -32,6 +32,7 @@ body {
     background-color: #141d26;
     width: 90%;
     /* height: 100vh; */
+    min-height: 100vh;
 }
 /* .carousel {
     width:800px;
@@ -63,4 +64,8 @@ body {
 
 .use-ajax{
     display: none;
+}
+
+input {
+    color: black !important;
 }

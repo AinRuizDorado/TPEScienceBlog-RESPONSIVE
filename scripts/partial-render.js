@@ -20,13 +20,13 @@ function loadHome(event) {
     });
 }
 function loadHomeFirstTime() {
-    setTimeout(() => {
+    // setTimeout(() => {
         fetch("html/home.html").then(function (response) {
             console.log("ok");
             console.log(response);
             response.text().then(t => document.querySelector("#render").innerHTML = t);
         });
-    }, 3000);
+    // }, 3000);
     // event.preventDefault();
 
     firstOpen = false;
