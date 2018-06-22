@@ -11,14 +11,14 @@ let button4 = document.querySelector(".gamebutton4");
 let button5 = document.querySelector(".gamebutton5");
 let button6 = document.querySelector(".gamebutton6");
 let button7 = document.querySelector(".gamebutton7");
-button0.addEventListener("click", function(){GetCard(0)})
-button1.addEventListener("click", function(){GetCard(1)})
-button2.addEventListener("click", function(){GetCard(2)})
-button3.addEventListener("click", function(){GetCard(3)})
-button4.addEventListener("click", function(){GetCard(4)})
-button5.addEventListener("click", function(){GetCard(5)})
-button6.addEventListener("click", function(){GetCard(6)})
-button7.addEventListener("click", function(){GetCard(7)})
+button0.addEventListener("click", function () { GetCard(0) })
+button1.addEventListener("click", function () { GetCard(1) })
+button2.addEventListener("click", function () { GetCard(2) })
+button3.addEventListener("click", function () { GetCard(3) })
+button4.addEventListener("click", function () { GetCard(4) })
+button5.addEventListener("click", function () { GetCard(5) })
+button6.addEventListener("click", function () { GetCard(6) })
+button7.addEventListener("click", function () { GetCard(7) })
 
 let marcas = [];
 let point;
@@ -51,11 +51,11 @@ function GetGame() {
 
         random = Math.random();
         if (random >= 0.5) {
-            document.getElementById("marca" + [i]).src = "img/coin.png";
+            document.getElementById("marca" + [i]).src = "https://i.imgur.com/qiTNa9c.png";
             marcas.push(1);
             numberofcoins++;
         } else {
-            document.getElementById("marca" + [i]).src = "img/bowser.png";
+            document.getElementById("marca" + [i]).src = "https://i.imgur.com/loaCVII.png";
             marcas.push(0);
             numberofbowser++;
         }
@@ -65,7 +65,7 @@ function GetGame() {
     }
     setTimeout(() => {
         for (let i = 0; i < arr.length; i++) {
-            document.getElementById("marca" + [i]).src = "img/card.png";
+            document.getElementById("marca" + [i]).src = "https://i.imgur.com/eOM9No2.png";
         }
         DisableButton = false;
         GameCondition();
@@ -83,7 +83,7 @@ function GetCard(point) {
         console.log("me llego el numero " + point);
         if (marcas[point] == 1) {
             console.log("me llego un 1");
-            document.getElementById("marca" + [point]).src = "img/coin.png";
+            document.getElementById("marca" + [point]).src = "https://i.imgur.com/qiTNa9c.png";
             numberofcoins--;
             hit++;
             totalhit++;
@@ -92,7 +92,7 @@ function GetCard(point) {
             PressButton[point].disabled = true;
         } else {
             console.log("me llego un 0");
-            document.getElementById("marca" + [point]).src = "img/bowser.png";
+            document.getElementById("marca" + [point]).src = "https://i.imgur.com/loaCVII.png";
             numberofbowser--;
             errors++;
             totalerrors++;
@@ -100,7 +100,7 @@ function GetCard(point) {
             GameCondition();
             PressButton[point].disabled = true;
         }
-        
+
     }
 
 }
@@ -136,19 +136,19 @@ function NextGame() {
     for (let i = 0; i < arr.length; i++) {
         if (marcas[i] == 1) {
             marcas[i] = 0;
-            document.getElementById("marca" + [i]).src = "img/bowser.png";
+            document.getElementById("marca" + [i]).src = "https://i.imgur.com/loaCVII.png";
             numberofbowser++;
         }
         else {
             marcas[i] = 1;
-            document.getElementById("marca" + [i]).src = "img/coin.png";
+            document.getElementById("marca" + [i]).src = "https://i.imgur.com/qiTNa9c.png";
             numberofcoins++;
         }
     }
     console.log(marcas);
     setTimeout(() => {
         for (let i = 0; i < arr.length; i++) {
-            document.getElementById("marca" + [i]).src = "img/card.png";
+            document.getElementById("marca" + [i]).src = "https://i.imgur.com/eOM9No2.png";
         }
         hit = 0;
         errors = 0;
@@ -173,5 +173,5 @@ function ResetButtons() {
     for (let i = 0; i <= PressButton.length; i++) {
         PressButton[i].disabled = false;
     }
-    
+
 }
