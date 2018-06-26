@@ -1,15 +1,13 @@
 "use strict";
 const GetApi = "http://web-unicen.herokuapp.com/api/groups/25-Hsieh-Ruiz/Prueba";
-let OnUsers = document.querySelector(".users");
-let OnRender = document.querySelector(".render");
 
 let PostNumber;
 let PostUser;
 let PostVisitas;
 let PostFollowers;
 
-let mandarapi = document.querySelector(".postapi");
-mandarapi.addEventListener("click", OnPost);
+let PostRest = document.querySelector(".PostRest");
+PostRest.addEventListener("click", post);
 
 
 
@@ -20,7 +18,9 @@ function GetObject() {
     PostFollowers = document.querySelector('#GetFollowers').value;
 }
 
-function OnPost() {
+function post() {
+    console.log("boton funciona?");
+    
     GetObject();
     let PostObject = {
         "thing": {
@@ -56,3 +56,7 @@ function OnPost() {
             }
         )
 }
+
+
+
+
