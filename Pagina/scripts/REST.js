@@ -1,23 +1,30 @@
+// de esta manera puedo llamar a la api completamente
 const GetApi = "http://web-unicen.herokuapp.com/api/groups/25-Hsieh-Ruiz/Pruebe";
-let dameid = [];
-// var GetLastTop = Top[Top.length - 1];
+// array donde se van a guardar todos los id y se usa dsp para generar los event listeners
+let OnIds = [];
+// variables de los imputs
 let PostNumber;
 let PostUser;
 let PostVisitas;
 let PostFollowers;
-
+// event listeners a cada funcion, de esta manera se pueden pasar parametros
 document.querySelector(".PostRest").addEventListener('click', function () {
     SendPost();
-})
-document.querySelector("#data").addEventListener('click', function () {
-    getData();
 })
 document.querySelector("#Sendx3").addEventListener('click', function () {
     SendPostx3();
 })
-
-
-
+document.querySelector("#Edit").addEventListener('click', function () {
+    OnEdit();
+})
+// Obtener datos de los input
+function GetObject() {
+    PostUser = document.querySelector('#GetUser').value;
+    PostNumber = document.querySelector('#GetPost').value;
+    PostVisitas = document.querySelector('#GetVisitas').value;
+    PostFollowers = document.querySelector('#GetFollowers').value;
+}
+// esta funcion es la que genera la tabla y obtiene los datos del Api
 function getData() {
     fetch(GetApi, {
         method: "GET",
@@ -40,27 +47,30 @@ function getData() {
                 rowprueba += "<td>" + data.thing.Posts + "</td>";
                 rowprueba += "<td>" + data.thing.Visitas + "</td>";
                 rowprueba += "<td>" + data.thing.Seguidores + "</td>";
+                // aca creamos una fila el cual tendra un boton con una clase que tiene una variable x que se va sumando por cada boton va a ser x++ despues le damos un name value que va a tener la id de la api por cada boton se puede ver que id es en el console log
                 rowprueba += "<td>" + "<button class='btn btn-primary EditButton"+x+"' name=  " + ApiId + " >Editar </button" + "</td>";
                 rowprueba += "<td>" + "<button class='btn btn-danger DelButton"+x+"' name=  " + ApiId + " >Borrar </button" + "</td>";
-                dameid.push(ApiId);
+                OnIds.push(ApiId);
                 rowprueba += "</tr>";
                 contenedor.innerHTML += rowprueba;
                 x++;
                 
             }
-            console.log(dameid);
+            console.log(OnIds);
             GetIdJson();
             
         })
         .catch(function (e) {
             console.log(e)
         })
-
 }
-function GetIdJson() {  
-      for (let j = 0; j < dameid.length; j++) {
-        let button = dameid[j];
+// esto fue lo mas dificil de terminar ya que con un for normal solo cuenta el ultimo indice para crear x event listeners
+
+function GetIdJson() {
+    // indice es J el cual recorrera el for indefinidamente hasta terminar con todas las id del json que anterior guarde en OnIds  
+      for (let j = 0; j < OnIds.length; j++) {
         document.querySelector(".DelButton"+j).addEventListener('click', function() {
+            // la variable x va a tener el name de cada clase que guardamos anteriormente y va iterar
             var x = document.querySelector(".DelButton"+j).name;
             borrarTabla(x);
           console.log(x);
@@ -69,12 +79,7 @@ function GetIdJson() {
       }
 }
 
-function GetObject() {
-    PostUser = document.querySelector('#GetUser').value;
-    PostNumber = document.querySelector('#GetPost').value;
-    PostVisitas = document.querySelector('#GetVisitas').value;
-    PostFollowers = document.querySelector('#GetFollowers').value;
-}
+
 
 function SendPost() {
     console.log("boton funciona?");
