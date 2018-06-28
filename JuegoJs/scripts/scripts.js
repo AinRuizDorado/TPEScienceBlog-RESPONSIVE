@@ -20,6 +20,10 @@ button5.addEventListener("click", function () { GetCard(5) })
 button6.addEventListener("click", function () { GetCard(6) })
 button7.addEventListener("click", function () { GetCard(7) })
 
+document.querySelector("#buttontext").addEventListener('click', function () {
+    GetGame();
+})
+
 let marcas = [];
 let point;
 let numberofcoins = 0;
