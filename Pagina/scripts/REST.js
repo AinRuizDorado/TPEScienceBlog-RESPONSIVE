@@ -29,6 +29,7 @@ function GetObject() {
     PostVisitas = document.querySelector('#GetVisitas').value;
     PostFollowers = document.querySelector('#GetFollowers').value;
 }
+// esto esta doble para no hacer colision si el usuario quiere crear y editar un post al mismo tiempo
 function GetObjectEdit() {
     EditUser = document.querySelector('#EditUser').value;
     EditNumber = document.querySelector('#EditPost').value;
@@ -48,25 +49,26 @@ function getData() {
     })
         .then(function (json) {
             console.log(json);
+            // contenedor donde se va a crear la tabla
             let contenedor = document.querySelector("#result");
             contenedor.innerHTML = "";
             let x = 0;
             for (let data of json.Pruebe) {
                 let ApiId = data._id;
-                let rowprueba = "<tr>"
-                rowprueba += "<td>" + data.thing.User + "</td>";
-                rowprueba += "<td>" + data.thing.Posts + "</td>";
-                rowprueba += "<td>" + data.thing.Visitas + "</td>";
-                rowprueba += "<td>" + data.thing.Seguidores + "</td>";
-                // aca creamos una fila el cual tendra un boton con una clase que tiene una variable x que se va sumando por cada boton va a ser x++ despues le damos un name value que va a tener la id de la api por cada boton se puede ver que id es en el console log
-                rowprueba += "<td>" + "<button class='btn btn-primary EditButton" + x + "' name=  " + ApiId + " >Editar </button" + "</td>";
-                rowprueba += "<td>" + "<button class='btn btn-danger DelButton" + x + "' name=  " + ApiId + " >Borrar </button" + "</td>";
+                let InRow = "<tr>"
+                InRow += "<td>" + data.thing.User + "</td>" + "<td>" + data.thing.Posts + "</td>";
+                InRow += "<td>" + data.thing.Visitas + "</td>" + "<td>" + data.thing.Seguidores + "</td>";
+                 // aca creamos una fila el cual tendra un boton con una clase que tiene una variable x que se va sumando por cada boton va a ser x++ despues le damos un name value que va a tener la id de la api por cada boton se puede ver que id es en el console log
+                InRow += "<td>" + "<button class='btn btn-primary EditButton" + x + "' name=  " + ApiId + " >Editar </button" + "</td>";
+                InRow += "<td>" + "<button class='btn btn-danger DelButton" + x + "' name=  " + ApiId + " >Borrar </button" + "</td>";
+                // pusheamos al ultimo lugar del array las id de cada item en orden del JSON
                 OnIds.push(ApiId);
-                rowprueba += "</tr>";
-                contenedor.innerHTML += rowprueba;
+                InRow += "</tr>";
+                contenedor.innerHTML += InRow;
                 x++;
 
             }
+            // debug log, actua el getidjson que genera todos los event listener al final de la tabla
             console.log(OnIds);
             GetIdJson();
 
@@ -75,7 +77,7 @@ function getData() {
             console.log(e)
         })
 }
-// esto fue lo mas dificil de terminar ya que con un for normal solo cuenta el ultimo indice para crear x event listeners
+// esto fue lo mas dificil de terminar ya que con un for normal solo cuenta el ultimo indice para crear x event listeners encontre un post de un chinito en internet que me ayudo a completarlo
 
 function GetIdJson() {
     // indice es J el cual recorrera el for indefinidamente hasta terminar con todas las id del json que anterior guarde en OnIds  
@@ -99,8 +101,7 @@ function GetIdJson() {
 
 
 function SendPost() {
-    console.log("boton funciona?");
-
+    // obtenemos los .value de cada input con esta funcion
     GetObject();
     let PostObject = {
         "thing": {
@@ -110,6 +111,7 @@ function SendPost() {
             "Seguidores": PostFollowers
         }
     }
+    // debug log
     console.log(PostUser);
     console.log(PostNumber);
     console.log(PostVisitas);
@@ -150,6 +152,7 @@ function SendPost() {
 
 
 function SendPostx3() {
+    // reset de variables
     PostNumber = undefined;
     PostUser = undefined;
     PostVisitas = undefined;
@@ -163,7 +166,7 @@ function SendPostx3() {
             "Seguidores": PostFollowers
         }
     }
-
+    // obtenemos el objeto y lo enviamos 3 veces en 3 diferentes fetch
     fetch(GetApi, {
         'method': 'POST',
         'headers': {
@@ -252,7 +255,9 @@ function DelTabla(id) {
             }
         )
 }
+// pasamos la id a una variable global para despues pasarlo a otra funcion a donde lo mande
 function EditTable(id, key) {
+    // la key solo tiene un indice el cual sabe que posicion del JSON tiene que actuar
     EditId = id;
     fetch(GetApi, {
         method: "GET",
@@ -276,7 +281,9 @@ function EditTable(id, key) {
 
 
 }
+// recibe el parametro id para saber que item modificar
 function SendEditTable(id) {
+    // al igual que para enviar obtenemos el objeto .value a modificar
     GetObjectEdit();
     let EditObject = {
         "thing": {
@@ -286,7 +293,7 @@ function SendEditTable(id) {
             "Seguidores": EditFollowers
         }
     };
-
+    // lo enviamos a la api / id 
     fetch(GetApi + '/' + id, {
         "method": "PUT",
         "mode": 'cors',
@@ -306,7 +313,7 @@ function SendEditTable(id) {
             console.log(e)
         })
 }
-
+// Reset de variables y refresh de la tabla
 function reset() {
     let contenedor = document.querySelector("#result");
     contenedor.innerHTML = "cargando....";
