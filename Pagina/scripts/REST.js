@@ -1,5 +1,5 @@
 // de esta manera puedo llamar a la api completamente
-const GetApi = "http://web-unicen.herokuapp.com/api/groups/25-Hsieh-Ruiz/Pruebe";
+const API = "http://web-unicen.herokuapp.com/api/groups/25-Hsieh-Ruiz/Pruebe";
 // array donde se van a guardar todos los id y se usa dsp para generar los event listeners
 let OnIds = [];
 let EditId;
@@ -13,15 +13,23 @@ let EditUser;
 let EditVisitas;
 let EditFollowers;
 // event listeners a cada funcion, de esta manera se pueden pasar parametros
-document.querySelector(".PostRest").addEventListener('click', function () {
+$(".PostRest").click(function () {
     SendPost();
+    console.log("sendpost was clicked");
+});
+$(".pruebax").click(function () {
+    getDatajquery();
+    console.log("RECIBI el click");
+
 })
-document.querySelector("#Sendx3").addEventListener('click', function () {
+$("#Sendx3").click(function () {
     SendPostx3();
-})
-document.querySelector("#EditData").addEventListener('click', function () {
+    console.log("Sendx3 was clicked");
+});
+$("#EditData").click(function () {
     SendEditTable(EditId);
-})
+    console.log("EditData was clicked");
+});
 // Obtener datos de los input
 function GetObject() {
     PostUser = document.querySelector('#GetUser').value;
@@ -38,27 +46,22 @@ function GetObjectEdit() {
 }
 // esta funcion es la que genera la tabla y obtiene los datos del Api
 function getData() {
-    fetch(GetApi, {
-        method: "GET",
-        mode: 'cors',
-    }).then(function (r) {
-        if (!r.ok) {
-            console.log("error")
-        }
-        return r.json()
-    })
-        .then(function (json) {
-            console.log(json);
+    $.ajax({
+        url: API,
+        type: 'GET',
+        dataType: 'json', // added data type
+        success: function (promesa) {
+            console.log(promesa);
             // contenedor donde se va a crear la tabla
             let contenedor = document.querySelector("#result");
             contenedor.innerHTML = "";
             let x = 0;
-            for (let data of json.Pruebe) {
+            for (let data of promesa.Pruebe) {
                 let ApiId = data._id;
                 let InRow = "<tr>"
                 InRow += "<td>" + data.thing.User + "</td>" + "<td>" + data.thing.Posts + "</td>";
                 InRow += "<td>" + data.thing.Visitas + "</td>" + "<td>" + data.thing.Seguidores + "</td>";
-                 // aca creamos una fila el cual tendra un boton con una clase que tiene una variable x que se va sumando por cada boton va a ser x++ despues le damos un name value que va a tener la id de la api por cada boton se puede ver que id es en el console log
+                // aca creamos una fila el cual tendra un boton con una clase que tiene una variable x que se va sumando por cada boton va a ser x++ despues le damos un name value que va a tener la id de la api por cada boton se puede ver que id es en el console log
                 InRow += "<td>" + "<button class='btn btn-primary EditButton" + x + "' name=  " + ApiId + " >Editar </button" + "</td>";
                 InRow += "<td>" + "<button class='btn btn-danger DelButton" + x + "' name=  " + ApiId + " >Borrar </button" + "</td>";
                 // pusheamos al ultimo lugar del array las id de cada item en orden del JSON
@@ -71,14 +74,11 @@ function getData() {
             // debug log, actua el getidjson que genera todos los event listener al final de la tabla
             console.log(OnIds);
             GetIdJson();
-
-        })
-        .catch(function (e) {
-            console.log(e)
-        })
+        }
+    });
 }
-// esto fue lo mas dificil de terminar ya que con un for normal solo cuenta el ultimo indice para crear x event listeners encontre un post de un chinito en internet que me ayudo a completarlo
 
+// esto fue lo mas dificil de terminar ya que con un for normal solo cuenta el ultimo indice para crear x event listeners encontre un post de un chinito en internet que me ayudo a completarlo
 function GetIdJson() {
     // indice es J el cual recorrera el for indefinidamente hasta terminar con todas las id del json que anterior guarde en OnIds  
     for (let j = 0; j < OnIds.length; j++) {
@@ -118,7 +118,7 @@ function SendPost() {
     console.log(PostFollowers);
 
 
-    fetch(GetApi, {
+    fetch(API, {
         'method': 'POST',
         'headers': {
             'Content-type': 'application/json'
@@ -167,7 +167,7 @@ function SendPostx3() {
         }
     }
     // obtenemos el objeto y lo enviamos 3 veces en 3 diferentes fetch
-    fetch(GetApi, {
+    fetch(API, {
         'method': 'POST',
         'headers': {
             'Content-type': 'application/json'
@@ -187,7 +187,7 @@ function SendPostx3() {
                 console.log("error server");
             }
         )
-    fetch(GetApi, {
+    fetch(API, {
         'method': 'POST',
         'headers': {
             'Content-type': 'application/json'
@@ -207,7 +207,7 @@ function SendPostx3() {
                 console.log("error server");
             }
         )
-    fetch(GetApi, {
+    fetch(API, {
         'method': 'POST',
         'headers': {
             'Content-type': 'application/json'
@@ -233,7 +233,7 @@ function SendPostx3() {
 }
 
 function DelTabla(id) {
-    fetch(GetApi + '/' + id, {
+    fetch(API + '/' + id, {
         'method': 'DELETE',
         'headers': {
             'Content-type': 'application/json'
@@ -259,7 +259,7 @@ function DelTabla(id) {
 function EditTable(id, key) {
     // la key solo tiene un indice el cual sabe que posicion del JSON tiene que actuar
     EditId = id;
-    fetch(GetApi, {
+    fetch(API, {
         method: "GET",
         mode: 'cors',
     }).then(function (r) {
@@ -294,7 +294,7 @@ function SendEditTable(id) {
         }
     };
     // lo enviamos a la api / id 
-    fetch(GetApi + '/' + id, {
+    fetch(API + '/' + id, {
         "method": "PUT",
         "mode": 'cors',
         "headers": { "Content-Type": "application/json" },
