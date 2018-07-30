@@ -13,20 +13,20 @@ let EditUser;
 let EditVisitas;
 let EditFollowers;
 // event listeners a cada funcion, de esta manera se pueden pasar parametros
-$(".PostRest").click(function () {
+$(".PostRest").on('click', function () {
     SendPost();
     console.log("sendpost was clicked");
 });
-$(".pruebax").click(function () {
-    getDatajquery();
-    console.log("RECIBI el click");
+// $(".pruebax").on('click', function () {
+//     SendPostJquery();
+//     console.log("RECIBI el click");
 
-})
-$("#Sendx3").click(function () {
+// })
+$("#Sendx3").on('click', function () {
     SendPostx3();
     console.log("Sendx3 was clicked");
 });
-$("#EditData").click(function () {
+$("#EditData").on('click', function () {
     SendEditTable(EditId);
     console.log("EditData was clicked");
 });
@@ -82,23 +82,39 @@ function getData() {
 function GetIdJson() {
     // indice es J el cual recorrera el for indefinidamente hasta terminar con todas las id del json que anterior guarde en OnIds  
     for (let j = 0; j < OnIds.length; j++) {
-        document.querySelector(".DelButton" + j).addEventListener('click', function () {
-            // la variable x va a tener el name de cada clase que guardamos anteriormente y va iterar
+        $(".DelButton" + j).on('click', function () {
+
             var x = document.querySelector(".DelButton" + j).name;
             DelTabla(x);
+            console.log("DelButton" + j + "  Was Clicked");
+
         });
     }
     for (let y = 0; y < OnIds.length; y++) {
-        document.querySelector(".EditButton" + y).addEventListener('click', function () {
-            // la variable x va a tener el name de cada clase que guardamos anteriormente y va iterar
+
+        // la variable x va a tener el name de cada clase que guardamos anteriormente y va iterar
+        $(".EditButton" + y).on('click', function () {
             var x = document.querySelector(".EditButton" + y).name;
             EditTable(x, y);
-            console.log(y);
+            console.log("DelButton" + y + "  Was Clicked");
         });
+
     }
 }
 
+// function SendPostJquery() {
 
+//     $.ajax({
+//         type: "POST",
+//         url: API,
+//         data: JSON.stringify(PostObject),
+//         dataType: 'json',
+//         success: function (promesa) {
+//             console.log(promesa + "Exito");
+//         }
+//     });
+//     reset();
+// }
 
 function SendPost() {
     // obtenemos los .value de cada input con esta funcion
@@ -324,4 +340,4 @@ function reset() {
     getData();
 }
 
-getData();
+// getData();

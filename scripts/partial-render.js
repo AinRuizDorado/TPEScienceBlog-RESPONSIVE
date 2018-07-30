@@ -1,4 +1,6 @@
 "use strict";
+
+
 let firstOpen = true;
 let jshome = document.querySelectorAll(".js-home");
 let jscategories = document.querySelectorAll(".js-categories");
@@ -23,24 +25,27 @@ function loadHome(event) {
 }
 function loadHomeFirstTime() {
     // setTimeout(() => {
-        fetch("html/home.html").then(function (response) {
-            console.log("recibi la promesa");
-            console.log(response);
-            response.text().then(t => document.querySelector("#render").innerHTML = t);
-            setTimeout(() => {
-                eventPost();    
-            }, 2000);
-            
-        });
+    fetch("html/home.html").then(function (response) {
+        console.log("recibi la promesa");
+        console.log(response);
+        response.text().then(t => document.querySelector("#render").innerHTML = t);
+        setTimeout(() => {
+            eventPost();
+        }, 2000);
+
+    });
     // }, 3000);
 
-    firstOpen = false;  
+    firstOpen = false;
 }
 function loadUsers(event) {
     fetch("html/tabla.html").then(function (response) {
         console.log("recibi la promesa");
         console.log(response);
         response.text().then(t => document.querySelector("#render").innerHTML = t);
+        setTimeout(() => {
+            getData();
+        }, 1000);
     });
 }
 function loadCategories(event) {
@@ -66,5 +71,5 @@ function loadPost(event) {
 }
 function eventPost() {
     let jspost = document.querySelectorAll(".js-post");
-    jspost.forEach(e => e.addEventListener("click", loadPost)); 
+    jspost.forEach(e => e.addEventListener("click", loadPost));
 }
