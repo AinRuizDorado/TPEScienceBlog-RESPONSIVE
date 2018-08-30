@@ -1,3 +1,13 @@
+<?php
+// NOTE: Smarty has a capital 'S'
+include('smarty/libs/Smarty.class.php');
+
+$smarty = new Smarty();
+
+
+
+?>
+
 <html lang="en">
 
 <head>
